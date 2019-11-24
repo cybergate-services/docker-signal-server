@@ -26,7 +26,7 @@ RUN source /etc/profile.d/maven.sh
 RUN mvn install -DskipTests
 
 # Install Signal Server 
-COPY ./Signal-Server /Signal-Server
+COPY ./ /Signal-Server
 
 # Run server
 EXPOSE 8080
