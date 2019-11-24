@@ -4,8 +4,7 @@ LABEL maintainer "Chinthaka Deshapriya <chinthaka@cybergate.lk>"
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL C
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  apt-utils \
+RUN apt-get update && apt-get install -y --no-install-recommends  apt-utils \
   apt-transport-https \
   ca-certificates \
   cron \
