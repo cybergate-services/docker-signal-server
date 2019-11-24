@@ -3,11 +3,15 @@ LABEL maintainer "Chinthaka Deshapriya <chinthaka@cybergate.lk>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL C
-RUN apt-get update
-RUN apt-get install apt-utils -y
-RUN apt-get install wget -y
-RUN apt-get install git -y
-
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  apt-transport-https \
+  ca-certificates \
+  cron \
+  gettext \
+  gnupg \
+  rsync \
+  wget \
+  git
 
 # Install Java
 RUN apt install default-jre -y
