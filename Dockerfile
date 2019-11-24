@@ -4,6 +4,7 @@ LABEL maintainer "Chinthaka Deshapriya <chinthaka@cybergate.lk>"
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL C
 RUN apt-get update
+RUN apt install -y apt-utils
 RUN apt-get install wget -y
 RUN apt-get install git -y
 
