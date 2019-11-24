@@ -4,10 +4,14 @@ LABEL maintainer "Chinthaka Deshapriya <chinthaka@cybergate.lk>"
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL C
 RUN apt-get update
-RUN apt-get install wget git -y
+RUN apt-get install wget -y
+RUN apt-get install git -y
+
 
 # Install Java
-RUN apt-get install default-jre default-jdk -y
+RUN apt-get install default-jre -y
+RUN apt-get install default-jdk -y
+
 
 # Install Apache Maven
 RUN apt-get install maven -y 
