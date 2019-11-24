@@ -10,8 +10,8 @@ RUN apt-get install git -y
 
 
 # Install Java
-RUN apt-get install default-jre -y
-RUN apt-get install default-jdk -y
+RUN apt install default-jre -y
+RUN apt install default-jdk -y
 
 
 # Install Apache Maven
