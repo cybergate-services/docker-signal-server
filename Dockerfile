@@ -13,12 +13,12 @@ RUN apt-get install default-jre default-jdk -y
 RUN apt-get install maven -y 
 
 # Setup enviorenment variables
-COPY maven.sh  /etc/profile.d/
+COPY /conf/maven.sh  /etc/profile.d/
 RUN chmod +x  /etc/profile.d/maven.sh
 
 # Clone the signal server codes
 RUN cd /opt
-RUN git clone https://github.com/signalapp/Signal-Server.git
+RUN git clone https://github.com/cybergate-services/Signal-Server.git
 
 # Compile Signal Server
 RUN cd /opt/Signal-Server
@@ -32,7 +32,7 @@ COPY ./Signal-Server /Signal-Server
 EXPOSE 8080
 EXPOSE 8081
 
-CMD ["/bin/bash", "-c", "java -jar /Signal-Server/target/TextSecureServer-1.70.jar server /Signal-Server/config/Signal.yml"]
+CMD ["/bin/bash", "-c", "java -jar /Signal-Server/target/TextSecureServer-2.55.jar server /Signal-Server/config/Signal.yml"]
 
 
 
