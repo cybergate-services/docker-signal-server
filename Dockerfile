@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends  apt-utils \
   git
 
 # Install Java
-RUN apt-get install -y default-jre \
-  default-jdk 
+RUN apt-get install -y default-jre 
+RUN apt-get install -y default-jdk 
 
 # Install Apache Maven
 RUN apt-get install maven -y 
