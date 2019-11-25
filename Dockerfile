@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM cybergatelabs/openjdk:11
 LABEL maintainer "Chinthaka Deshapriya <chinthaka@cybergate.lk>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -13,10 +13,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -
   rsync \
   wget \
   git
-
-# Install Java
-RUN apt-get install -y default-jre 
-RUN apt-get install -y default-jdk 
 
 # Install Apache Maven
 RUN apt-get install maven -y 
@@ -45,6 +41,3 @@ EXPOSE 8080
 EXPOSE 8081
 
 CMD ["/bin/bash", "-c", "java -jar /Signal-Server/target/TextSecureServer-2.55.jar server /Signal-Server/config/Signal.yml"]
-
-
-
