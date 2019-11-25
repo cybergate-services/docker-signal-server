@@ -24,4 +24,4 @@ RUN mkdir -p /Signal-Server && rsync -avp /opt/Signal-Server/ /Signal-Server/
 EXPOSE 8080
 EXPOSE 8081
 
-CMD ["/bin/bash", "-c", "java -jar /Signal-Server/target/TextSecureServer-2.55.jar server /Signal-Server/config/Signal.yml"]
+CMD ["/bin/bash", "-c", "java -jar /Signal-Server/target/TextSecureServer-2.55.jar server /Signal-Server/service/config/Signal.yml"]
