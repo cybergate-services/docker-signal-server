@@ -17,7 +17,7 @@ RUN cd /opt && git clone https://github.com/cybergate-services/Signal-Server.git
 RUN cd /opt/Signal-Server && mvn install -DskipTests
 
 # Install Signal Server 
-COPY ./ /Signal-Server
+RUN mkdir -p /Signal-Server && rync -avp /opt/Signal-Server/ /Signal-Server/
 
 # Run server
 EXPOSE 8080
