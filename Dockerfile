@@ -14,8 +14,7 @@ RUN cd /opt
 RUN git clone https://github.com/cybergate-services/Signal-Server.git
 
 # Compile Signal Server
-RUN cd /opt/Signal-Server
-RUN source /etc/profile.d/maven.sh
+
 RUN mvn install -DskipTests
 
 # Install Signal Server 
