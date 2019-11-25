@@ -1,28 +1,13 @@
-FROM cybergatelabs/openjdk:11
+FROM  maven:3.6.2-jdk-11-slim
 LABEL maintainer "Chinthaka Deshapriya <chinthaka@cybergate.lk>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL C
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -y --no-install-recommends \
-  apt-transport-https \
-  ca-certificates \
   cron \
-  gettext \
-  gnupg \
-  rsync \
   wget \
   git
-
-# Install Apache Maven
-RUN apt-get install maven -y 
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Setup enviorenment variables
-COPY /conf/maven.sh  /etc/profile.d/
-RUN chmod +x  /etc/profile.d/maven.sh
 
 # Clone the signal server codes
 RUN cd /opt
