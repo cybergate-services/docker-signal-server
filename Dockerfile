@@ -21,6 +21,9 @@ RUN apt-get install -y default-jdk
 # Install Apache Maven
 RUN apt-get install maven -y 
 
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Setup enviorenment variables
 COPY /conf/maven.sh  /etc/profile.d/
 RUN chmod +x  /etc/profile.d/maven.sh
