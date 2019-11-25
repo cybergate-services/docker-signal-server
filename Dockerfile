@@ -7,6 +7,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -y --no-install-recommends \
   cron \
   wget \
+  rsync \
   git
 
 # Clone the signal server codes
