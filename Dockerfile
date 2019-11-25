@@ -15,7 +15,7 @@ RUN git clone https://github.com/cybergate-services/Signal-Server.git
 
 # Compile Signal Server
 
-RUN mvn install -DskipTests
+RUN cd /opt/Signal-Server && mvn install -DskipTests
 
 # Install Signal Server 
 COPY ./ /Signal-Server
