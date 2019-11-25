@@ -10,8 +10,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -
   git
 
 # Clone the signal server codes
-RUN cd /opt
-RUN git clone https://github.com/cybergate-services/Signal-Server.git
+RUN cd /opt && git clone https://github.com/cybergate-services/Signal-Server.git
 
 # Compile Signal Server
 
