@@ -1,11 +1,9 @@
 twilio: # Twilio gateway configuration
-  accountId: AC302d9ea2695e21cd17ce15bc510d28fd #fake
-  accountToken: febf5ccba3b4051dd7e7d0901a0fd404 #fake
-  numbers: # Numbers allocated in Twilio
-    - # First number
-      +66876157370 #fake
-  # messagingServicesId: 
-  localDomain: domain # Domain Twilio can connect back to for calls. Should be domain of your service.
+  accountId: AC954815010098d2782929900ef7873af5
+  accountToken: 8f1917c3f3cf98685252495b6a70023a
+  numbers: [+2054984770]
+  messagingServicesId: 
+  localDomain: cybergate.lk # Domain Twilio can connect back to for calls. Should be domain of your service.
 
 push:
   queueSize: 200 # Size of push pending queue
@@ -15,19 +13,19 @@ push:
 
 server:
   applicationConnectors:
-    - type: https
+    - type: http
       port: 8080
-      keyStorePath: ./ssl/example.keystore
-      keyStorePassword: example
+      #keyStorePath: /ssl/example.keystore
+      #keyStorePassword: example
       #keyStoreType : PKCS12
-      validateCerts: false
+      #validateCerts: false
   adminConnectors:
     - type: https
       port: 8081
-      keyStorePath: ./ssl/example.keystore
-      keyStorePassword: example
+      #keyStorePath: ./ssl/example.keystore
+      #keyStorePassword: example
       #keyStoreType : PKCS12
-      validateCerts: false
+      #validateCerts: false
 
 turn: # TURN server configuration
   secret: 121654fjdfgdyesdfgfhgh # TURN server secret
@@ -38,16 +36,16 @@ turn: # TURN server configuration
     - turn:etc.com:80?transport=udp #fake
 
 cache: # Redis server configuration for cache cluster
-  url: "redis://redit:6379/1"
+  url: "redis://redis:6379/1"
 
 directory: # Redis server configuration for directory cluster
-  url: "redis://redit:6379/0"
+  url: "redis://redis:6379/0"
 
 messageStore: # Postgresql database configuration for message store
   driverClass: org.postgresql.Driver
   user: "signal"
   password: "thepassword"
-  url: "jdbc:postgresql://postgresql_messagedb/messagedb"
+  url: "jdbc:postgresql://messagedb/messagedb"
 
 attachments: # MINIO configuration
   accessKey: AKIAIG4ILCORMAJCS37A
@@ -64,7 +62,7 @@ database: # Postgresql database configuration
   driverClass: org.postgresql.Driver
   user: "signal"
   password: "thepassword"
-  url: "jdbc:postgresql://postgresql_accountdb/accountdb"
+  url: "jdbc:postgresql://accountdb/accountdb"
   properties:
     charSet: UTF-8
 
