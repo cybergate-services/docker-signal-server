@@ -1,31 +1,16 @@
-FROM  maven:3.6.2-jdk-11-slim
-LABEL maintainer "Chinthaka Deshapriya <chinthaka@cybergate.lk>"
+FROM debian:buster as build
+RUN apt-get update && apt-get install -y openjdk-11-jdk-headless maven git
+RUN git -C /usr/local/src clone https://github.com/signalapp/Signal-Server
+WORKDIR /usr/local/src/Signal-Server
+COPY signal-server-patches /tmp/signal-server-patches
+RUN /tmp/signal-server-patches/apply-patches.sh
+RUN mvn install -DskipTests
 
-ARG DEBIAN_FRONTEND=noninteractive
-ENV LC_ALL C
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -y --no-install-recommends \
-  cron \
-  wget \
-  rsync \
-  git
-
-# Clone the signal server codes
-RUN cd /opt && git clone https://github.com/cybergate-services/Signal-Server.git
-
-# Compile Signal Server
-
-RUN cd /opt/Signal-Server && mvn install -DskipTests
-
-# Install Signal Server 
-RUN mkdir -p /Signal-Server && rsync -avp /opt/Signal-Server/ /Signal-Server/
-
-#COPY docker-entrypoint.sh /docker-entrypoint.sh
-#RUN chmod +x /docker-entrypoint.sh
-#ENTRYPOINT ["/docker-entrypoint.sh"]
-
-# Run server
-EXPOSE 8080
-EXPOSE 8081
-
-CMD ["/bin/bash", "-c", "java -jar  /Signal-Server/service/target/TextSecureServer-2.55.jar server /Signal-Server/service/config/Signal.yml"]
+FROM debian:buster
+RUN apt-get update && apt-get install -y openjdk-11-jre-headless
+COPY --from=build /usr/local/src/Signal-Server/service/target/TextSecureServer-2.55.jar /usr/share/TextSecureServer.jar
+COPY migrate-and-start-server.sh /usr/bin/migrate-and-start-server
+RUN useradd signal
+RUN chown -R signal /usr/share/TextSecureServer.jar
+USER signal
+CMD ["/usr/bin/migrate-and-start-server"]
