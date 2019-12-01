@@ -1,0 +1,17 @@
+diff --git a/service/src/main/java/org/whispersystems/textsecuregcm/sms/SmsSender.java b/service/src/main/java/org/whispersystems/textsecuregcm/sms/SmsSender.java
+index 55773a3..c3c705b 100644
+--- a/service/src/main/java/org/whispersystems/textsecuregcm/sms/SmsSender.java
++++ b/service/src/main/java/org/whispersystems/textsecuregcm/sms/SmsSender.java
+@@ -42,10 +42,10 @@ public class SmsSender {
+       destination = "+521" + destination.substring(3);
+     }
+ 
+-    twilioSender.deliverSmsVerification(destination, clientType, verificationCode);
++    // twilioSender.deliverSmsVerification(destination, clientType, verificationCode);
+   }
+ 
+   public void deliverVoxVerification(String destination, String verificationCode, Optional<String> locale) {
+-    twilioSender.deliverVoxVerification(destination, verificationCode, locale);
++    // twilioSender.deliverVoxVerification(destination, verificationCode, locale);
+   }
+ }

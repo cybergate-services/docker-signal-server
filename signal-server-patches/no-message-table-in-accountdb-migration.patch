@@ -1,0 +1,34 @@
+diff --git a/src/main/resources/accountsdb.xml b/src/main/resources/accountsdb.xml
+index f2a9c31..7090051 100644
+--- a/service/src/main/resources/accountsdb.xml
++++ b/service/src/main/resources/accountsdb.xml
+@@ -119,29 +119,6 @@
+             </column>
+         </createTable>
+ 
+-        <createTable tableName="messages">
+-            <column name="id" type="bigint" autoIncrement="true">
+-                <constraints primaryKey="true" nullable="false"/>
+-            </column>
+-
+-            <column name="account_id" type="bigint">
+-                <constraints nullable="false"/>
+-            </column>
+-
+-            <column name="device_id" type="bigint">
+-                <constraints nullable="false"/>
+-            </column>
+-
+-            <column name="encrypted_message" type="text">
+-                <constraints nullable="false"/>
+-            </column>
+-        </createTable>
+-
+-        <createIndex tableName="messages" indexName="messages_account_and_device">
+-            <column name="account_id"/>
+-            <column name="device_id"/>
+-        </createIndex>
+-
+     </changeSet>
+ 
+     <changeSet id="3" author="moxie">
