@@ -10,6 +10,8 @@ RUN mvn install -DskipTests
 FROM debian:buster
 RUN apt-get update && apt-get install -y openjdk-11-jre-headless
 COPY --from=build /usr/local/src/Signal-Server/service/target/TextSecureServer-2.55.jar /usr/share/TextSecureServer.jar
+COPY --from=build /usr/local/src/Signal-Server/websocket-resources/target/websocket-resources-2.55.jar /usr/share/websocket-resources-2.55.jar
+
 COPY migrate-and-start-server.sh /usr/bin/migrate-and-start-server
 RUN chmod +x /usr/bin/migrate-and-start-server
 RUN useradd signal
