@@ -1,6 +1,6 @@
 FROM debian:buster as build
 RUN apt-get update && apt-get install -y openjdk-11-jdk-headless maven git
-RUN git -C /usr/local/src clone https://github.com/signalapp/Signal-Server
+RUN git -C /usr/local/src clone https://github.com/cybergate-services/Signal-Server.git
 WORKDIR /usr/local/src/Signal-Server
 # COPY signal-server-patches /tmp/signal-server-patches
 # RUN chmod +x /tmp/signal-server-patches/apply-patches.sh
